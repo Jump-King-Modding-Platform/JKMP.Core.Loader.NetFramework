@@ -1,11 +1,11 @@
 <Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
-        <TargetFramework>net452</TargetFramework>
+        <TargetFramework>net462</TargetFramework>
         <LangVersion>9</LangVersion>
         <Nullable>enable</Nullable>
     </PropertyGroup>
     <ItemGroup>
-      <PackageReference Include="JKMP.Core" Version="0.3.0" />
+      <PackageReference Include="JKMP.Core" Version="0.4.1" />
     </ItemGroup>
     <Import Project="$(SolutionDir)DevVars.targets" Condition="Exists('$(SolutionDir)DevVars.targets')" />
 
