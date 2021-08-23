@@ -9,13 +9,17 @@
     </ItemGroup>
     <Import Project="$(SolutionDir)DevVars.targets" Condition="Exists('$(SolutionDir)DevVars.targets')" />
 
-    <!-- Copy files to game directory if this is not a CI build and GameDirectory is defined -->
-    <Target Name="CopyFilesToGameDirectory" AfterTargets="PostBuildEvent" Condition="$(CI) == '' And $(GameDirectory) != ''">
+    <!-- Copy files to game directories if this is not a CI build -->
+    <Target Name="CopyFilesToGameDirectory" AfterTargets="PostBuildEvent" Condition="$(CI) == ''" Outputs="%(GameDirectory.Identity)">
         <ItemGroup>
             <CoreFiles Include="$(TargetDir)JKMP.Core.Loader.NetFramework.dll" />
         </ItemGroup>
+        
+        <PropertyGroup>
+            <Destination>%(GameDirectory.Identity)</Destination>
+        </PropertyGroup>
 
-        <Message Importance="high" Text="Copying @(CoreFiles->'%(filename)%(extension)') to $(GameDirectory)\JKMP\Loaders" />
-        <Copy SourceFiles="@(CoreFiles)" DestinationFolder="$(GameDirectory)\JKMP\Loaders" SkipUnchangedFiles="true" />
+        <Message Importance="high" Text="Copying @(CoreFiles->'%(filename)%(extension)') to $(Destination)\JKMP\Loaders" />
+        <Copy SourceFiles="@(CoreFiles)" DestinationFolder="$(Destination)\JKMP\Loaders" SkipUnchangedFiles="true" />
     </Target>
 </Project>
