@@ -2,7 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
+using JKMP.Core.Logging;
 using JKMP.Core.Plugins;
+using Serilog;
 
 namespace JKMP.Core.Loader.NetFramework
 {
@@ -10,10 +12,12 @@ namespace JKMP.Core.Loader.NetFramework
     public class NetFrameworkPluginLoader : IPluginLoader
     {
         public ICollection<string> SupportedExtensions { get; } = new[] { ".dll" };
-        
+
+        private static readonly ILogger Logger = LogManager.CreateLogger<NetFrameworkPluginLoader>();
+
         public PluginContainer LoadPlugin(string filePath, PluginInfo info)
         {
-            Console.WriteLine($"Loading plugin: {filePath}");
+            Logger.Information("Loading plugin: {filePath}", filePath);
 
             Assembly assembly = Assembly.LoadFrom(filePath);
             string pluginDirectory = Path.GetDirectoryName(filePath)!;
