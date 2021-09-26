@@ -19,7 +19,7 @@ namespace JKMP.Core.Loader.NetFramework
         {
             Logger.Information("Loading plugin: {filePath}", filePath);
 
-            Assembly assembly = Assembly.LoadFrom(filePath);
+            Assembly assembly = Assembly.LoadFile(Path.GetFullPath(filePath));
             string pluginDirectory = Path.GetDirectoryName(filePath)!;
             string pluginName = Path.GetFileNameWithoutExtension(pluginDirectory);
             string typeName = $"JKMP.Plugin.{pluginName}.{pluginName}Plugin";
