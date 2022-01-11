@@ -30,4 +30,4 @@ jobs:
           name: Modular release
           artifacts: "JKMP.Core.Loader.NetFramework/bin/Release/net462/JKMP.Core.Loader.NetFramework.dll"
           token: ${{ secrets.GITHUB_TOKEN }}
-          tag: ${{ github.ref }}
+          tag: latest
