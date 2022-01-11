@@ -1,0 +1,32 @@
+name: Create GitHub release
+
+on:
+  push:
+    branches: [ main, ci ]
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout files
+        uses: actions/checkout@v2
+      - name: Setup dotnet
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: 5.0.x
+          source-url: https://nuget.pkg.github.com/${{ github.repository_owner }}/index.json
+        env:
+          NUGET_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Restore packages
+        run: dotnet restore
+        env:
+          NUGET_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Build project
+        run: dotnet build --no-restore -c Release
+      - name: Create release
+        uses: ncipollo/release-action@v1
+        with:
+          name: Modular release
+          artifacts: "JKMP.Core.Loader.NetFramework/bin/Release/net462/JKMP.Core.Loader.NetFramework.dll"
+          token: ${{ secrets.GITHUB_TOKEN }}
