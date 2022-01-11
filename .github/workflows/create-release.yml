@@ -1,9 +1,9 @@
 name: Create GitHub release
 
 on:
-  push:
-    tags:
-      - 'v*'
+  create:
+      tags:
+        - v*
 
 jobs:
   release:
