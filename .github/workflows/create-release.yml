@@ -1,7 +1,7 @@
 name: Create GitHub release
 
 on:
-  create:
+  push:
       tags:
         - v*
 
