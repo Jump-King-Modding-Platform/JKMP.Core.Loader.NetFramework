@@ -29,7 +29,7 @@ jobs:
         uses: ncipollo/release-action@v1
         with:
           name: Modular release
-          allowUpdates: true
           artifacts: "JKMP.Core.Loader.NetFramework/bin/Release/net462/JKMP.Core.Loader.NetFramework.dll"
           token: ${{ secrets.GITHUB_TOKEN }}
           tag: ${{ github.ref }}
+          generateReleaseNotes: true
