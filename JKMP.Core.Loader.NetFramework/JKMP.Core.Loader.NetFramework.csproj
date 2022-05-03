@@ -15,7 +15,7 @@
         <ItemGroup>
             <CoreFiles Include="$(TargetDir)JKMP.Core.Loader.NetFramework.dll" />
         </ItemGroup>
-        
+
         <PropertyGroup>
             <Destination>%(GameDirectory.Identity)</Destination>
         </PropertyGroup>
